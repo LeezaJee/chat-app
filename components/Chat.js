@@ -90,6 +90,11 @@ export default class Chat extends React.Component {
             <Text>Send an Image or share Geolocation</Text>
           </View>
         </TouchableOpacity>
+
+        {/* component for Android so that the input field won’t be hidden beneath the keyboard */}
+        {Platform.OS === "android" ? (
+          <KeyboardAvoidingView behavior="height" />
+        ) : null}
       </View>
     );
   }
