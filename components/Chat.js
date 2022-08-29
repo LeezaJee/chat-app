@@ -38,6 +38,13 @@ export default class Chat extends React.Component {
       ],
     });
   }
+
+  onSend(messages = []) {
+    this.setState((previousState) => ({
+      messages: GiftedChat.append(previousState.messages, messages),
+    }));
+  }
+
   render() {
     // Username is displayed
     let name = this.props.route.params.name;
