@@ -68,18 +68,14 @@ export default class Chat extends React.Component {
     const { bgColor } = this.props.route.params;
 
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: bgColor,
-        }}
-      >
-        <Text>Chat Screen</Text>
-        <Button
-          title="Go to start"
-          onPress={() => this.props.navigation.navigate("Start")}
+      <View style={{ flex: 1 }}>
+        <GiftedChat
+          renderBubble={this.renderBubble.bind(this)}
+          messages={this.state.messages}
+          onSend={(messages) => this.onSend(messages)}
+          user={{
+            _id: 1,
+          }}
         />
       </View>
     );
