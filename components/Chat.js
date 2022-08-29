@@ -9,6 +9,12 @@ import {
 import { GiftedChat, Bubble } from "react-native-gifted-chat";
 
 export default class Chat extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      messages: [],
+    };
+  }
   render() {
     // Username is displayed
     let name = this.props.route.params.name;
