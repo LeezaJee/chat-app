@@ -86,6 +86,9 @@ export default class Chat extends React.Component {
           accessibilityRole="button"
           onPress={this._onPress}
         >
+          <View>
+            <Text>Send an Image or share Geolocation</Text>
+          </View>
         </TouchableOpacity>
       </View>
     );
