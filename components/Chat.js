@@ -77,6 +77,16 @@ export default class Chat extends React.Component {
             _id: 1,
           }}
         />
+
+        {/* Accessibility */}
+        <TouchableOpacity
+          accessible={true}
+          accessibilityLabel="More options"
+          accessibilityHint="Lets you choose to send an image or your geolocation."
+          accessibilityRole="button"
+          onPress={this._onPress}
+        >
+        </TouchableOpacity>
       </View>
     );
   }
