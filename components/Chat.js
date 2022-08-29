@@ -45,6 +45,20 @@ export default class Chat extends React.Component {
     }));
   }
 
+  // customize style of message bubble
+  renderBubble(props) {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: "#5c5d5e",
+          },
+        }}
+      />
+    );
+  }
+
   render() {
     // Username is displayed
     let name = this.props.route.params.name;
