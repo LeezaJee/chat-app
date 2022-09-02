@@ -101,10 +101,16 @@ export default class Chat extends React.Component {
     });
   }
 
+  // Add messages to state
   onSend(messages = []) {
-    this.setState((previousState) => ({
-      messages: GiftedChat.append(previousState.messages, messages),
-    }));
+    this.setState(
+      (previousState) => ({
+        messages: GiftedChat.append(previousState.messages, messages),
+      }),
+      () => {
+        this.addMessage();
+      }
+    );
   }
 
   // customize style of message bubble
@@ -119,6 +125,23 @@ export default class Chat extends React.Component {
         }}
       />
     );
+  }
+
+  // adds messages to store
+  addMessage = (message) => {
+    this.referenceChatMessages.add({
+      uid: this.state.uid,
+      _id: message._id,
+      createdAt: message.createdAt,
+      text: message.text,
+      user: message.user,
+    });
+  };
+
+  componentWillUnmount() {
+    // unsubscribe() used to stop receiving updates from collection
+    this.unsubscribe();
+    this.authUnsubscribe();
   }
 
   render() {
