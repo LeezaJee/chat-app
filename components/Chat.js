@@ -12,16 +12,6 @@ import {
 const firebase = require("firebase");
 require("firebase/firestore");
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB1u2WPtUeU8a9P4CXILMTmbTimMVzUiiA",
-  authDomain: "chatapp-2201b.firebaseapp.com",
-  projectId: "chatapp-2201b",
-  storageBucket: "chatapp-2201b.appspot.com",
-  messagingSenderId: "768165975127",
-  appId: "1:768165975127:web:863bfba636567f3ab1bf12",
-  measurementId: "G-F1K35KGGWV",
-};
-
 export default class Chat extends React.Component {
   constructor() {
     super();
@@ -35,7 +25,15 @@ export default class Chat extends React.Component {
       },
     };
     if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
+      firebase.initializeApp({
+        apiKey: "AIzaSyB1u2WPtUeU8a9P4CXILMTmbTimMVzUiiA",
+        authDomain: "chatapp-2201b.firebaseapp.com",
+        projectId: "chatapp-2201b",
+        storageBucket: "chatapp-2201b.appspot.com",
+        messagingSenderId: "768165975127",
+        appId: "1:768165975127:web:863bfba636567f3ab1bf12",
+        measurementId: "G-F1K35KGGWV",
+      });
     }
     // reference to messages collection
     this.referenceChatMessages = firebase.firestore().collection("messages");
