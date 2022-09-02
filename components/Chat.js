@@ -146,10 +146,8 @@ export default class Chat extends React.Component {
 
   render() {
     // sets selected background color from start page
-    let { bgColor } = this.props.route.params;
-    // Username is displayed
-    let name = this.props.route.params.name;
-    this.props.navigation.setOptions({ title: name });
+    // name = username displayed
+    let { bgColor, name } = this.props.route.params;
 
     return (
       <View
@@ -163,7 +161,9 @@ export default class Chat extends React.Component {
           messages={this.state.messages}
           onSend={(messages) => this.onSend(messages)}
           user={{
-            _id: 1,
+            _id: this.state.user._id,
+            name: name,
+            avatar: this.state.user.avatar,
           }}
         />
 
