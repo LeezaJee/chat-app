@@ -41,7 +41,29 @@ export default class Chat extends React.Component {
     this.referenceChatMessages = firebase.firestore().collection("messages");
   }
 
+  onCollectionUpdate = (querySnapshot) => {
+    const messages = [];
+    // go through each doc
+    querySnapshot.forEach((doc) => {
+      // get the queryDocumentSnapshots data
+      var data = doc.data();
+      messages.push({
+        _id: data._id,
+        createdAt: data.createdAt.toDate(),
+        text: data.text,
+        uid: data.uid,
+        user: {
+          _id: data.user._id,
+          name: data.user.name,
+          avatar: data.user.avatar,
         },
+      });
+    });
+    this.setState({
+      messages,
+    });
+  };
+
   componentDidMount() {
     // required for listing name in default message
     // used to display title/name at very top of page
