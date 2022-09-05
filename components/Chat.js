@@ -169,19 +169,6 @@ export default class Chat extends React.Component {
           }}
         />
 
-        {/* Accessibility */}
-        <TouchableOpacity
-          accessible={true}
-          accessibilityLabel="More options"
-          accessibilityHint="Lets you choose to send an image or your geolocation."
-          accessibilityRole="button"
-          onPress={this._onPress}
-        >
-          <View>
-            <Text>Send an Image or share Geolocation</Text>
-          </View>
-        </TouchableOpacity>
-
         {/* component for Android so that the input field won’t be hidden beneath the keyboard */}
         {Platform.OS === "android" ? (
           <KeyboardAvoidingView behavior="height" />
