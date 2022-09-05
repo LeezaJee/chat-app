@@ -24,6 +24,7 @@ export default class Chat extends React.Component {
         avatar: "",
       },
     };
+
     if (!firebase.apps.length) {
       firebase.initializeApp({
         apiKey: "AIzaSyB1u2WPtUeU8a9P4CXILMTmbTimMVzUiiA",
@@ -82,7 +83,10 @@ export default class Chat extends React.Component {
         messages: [],
         loggedInText: "You are logged in",
         user: {
-          _id: user._id,
+          // anonymous user doesn't have _id attached to user object so the app breaks when trying to send a message
+          // when you hit send message, the app doesn't know what _id stands for
+          // thus, || user.uid was added because it is the only unique thing that can be used else
+          _id: user._id || user.uid,
           name: name,
           avatar: "https://placeholder.com/140/140/any",
         },
