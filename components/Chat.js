@@ -159,7 +159,7 @@ export default class Chat extends React.Component {
     }
   }
 
-  // Add messages to state
+  // adds messages to state
   onSend(messages = []) {
     this.setState(
       (previousState) => ({
@@ -167,9 +167,21 @@ export default class Chat extends React.Component {
       }),
       () => {
         this.addMessage(messages[0]);
+        this.saveMessages(messages);
       }
     );
   }
+
+  // adds messages to store
+  addMessage = (message) => {
+    this.referenceChatMessages.add({
+      uid: this.state.uid,
+      _id: message._id,
+      createdAt: message.createdAt,
+      text: message.text,
+      user: message.user,
+    });
+  };
 
   // customize style of message bubble
   renderBubble(props) {
@@ -185,16 +197,6 @@ export default class Chat extends React.Component {
     );
   }
 
-  // adds messages to store
-  addMessage = (message) => {
-    this.referenceChatMessages.add({
-      uid: this.state.uid,
-      _id: message._id,
-      createdAt: message.createdAt,
-      text: message.text,
-      user: message.user,
-    });
-  };
 
   componentWillUnmount() {
     // unsubscribe() used to stop receiving updates from collection
