@@ -13,6 +13,7 @@
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^6.0.12",
     "@react-navigation/stack": "^6.2.3",
+    "cookies": "^0.8.0",
     "expo": "^46.0.10",
     "expo-status-bar": "~1.4.0",
     "firebase": "^8.10.1",
@@ -26,7 +27,8 @@
     "react-native-screens": "~3.15.0",
     "react-native-web": "~0.18.7",
     "react-navigation": "^4.4.4",
-    "webpack-config": "^7.5.0"
+    "webpack-config": "^7.5.0",
+    "@react-native-community/netinfo": "9.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
