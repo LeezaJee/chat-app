@@ -41,6 +41,7 @@ export default class Chat extends React.Component {
     }
     // reference to messages collection
     this.referenceChatMessages = firebase.firestore().collection("messages");
+    this.referenceMessagesUser = null;
   }
 
   onCollectionUpdate = (querySnapshot) => {
@@ -71,6 +72,9 @@ export default class Chat extends React.Component {
     // used to display title/name at very top of page
     let { name } = this.props.route.params;
     this.props.navigation.setOptions({ title: name });
+
+    // retrieves chat messages from asyncStorage instead of filling message state with static data
+    this.getMessages();
 
     // reference to messages collection
     this.referenceChatMessages = firebase.firestore().collection("messages");
