@@ -197,6 +197,13 @@ export default class Chat extends React.Component {
     );
   }
 
+  // hides chat input to prevent usage when offline
+  renderInputToolbar(props) {
+    if (this.state.isConnected == false) {
+    } else {
+      return <InputToolbar {...props} />;
+    }
+  }
 
   componentWillUnmount() {
     // unsubscribe() used to stop receiving updates from collection
@@ -218,6 +225,7 @@ export default class Chat extends React.Component {
       >
         <GiftedChat
           renderBubble={this.renderBubble.bind(this)}
+          renderInputToolbar={this.renderInputToolbar.bind(this)}
           messages={this.state.messages}
           onSend={(messages) => this.onSend(messages)}
           user={{
