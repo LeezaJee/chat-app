@@ -98,16 +98,29 @@ export default class Chat extends React.Component {
           avatar: "https://placeholder.com/140/140/any",
         },
       });
-      // reference to active messages collection
-      this.referenceMessagesUser = firebase
-        .firestore()
-        .collection("messages")
-        .where("uid", "==", this.state.uid);
 
       this.unsubscribe = this.referenceChatMessages
         .orderBy("createdAt", "desc")
         .onSnapshot(this.onCollectionUpdate);
     });
+
+    // reference to active messages collection
+    this.referenceMessagesUser = firebase
+      .firestore()
+      .collection("messages")
+      .where("uid", "==", this.state.uid);
+
+    // checks if user is online or not
+    NetInfo.fetch().then((connection) => {
+      if (connection.isConnected) {
+        this.setState({ isConnected: true });
+        console.log("online");
+      } else {
+        this.setState({ isConnected: false });
+        console.log("offline");
+      }
+    });
+  }
   }
 
   // Add messages to state
