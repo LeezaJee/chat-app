@@ -127,3 +127,21 @@ export default class CustomActions extends React.Component {
     );
   };
 
+  render() {
+    return (
+      <TouchableOpacity
+        accessible={true}
+        accessibilityLabel="Options"
+        accessibilityHint="You can choose to send an image or your location"
+        accessibilityRole="button"
+        style={[styles.container]}
+        onPress={this.onActionPress}
+      >
+        <View style={[styles.wrapper, this.props.wrapperStyle]}>
+          <Text style={[styles.iconText, this.props.iconTextStyle]}>+</Text>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+}
+
