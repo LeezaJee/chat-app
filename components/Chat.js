@@ -72,6 +72,43 @@ export default class Chat extends React.Component {
     });
   };
 
+  // retrieve chat messages from asyncStorage
+  async getMessages() {
+    let messages = "";
+    try {
+      messages = await AsyncStorage.getItem("messages");
+      this.setState({
+        messages: JSON.parse(messages),
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  // stores chat messages in asyncStorage
+  async saveMessages() {
+    try {
+      await AsyncStorage.setItem(
+        "messages",
+        JSON.stringify(this.state.messages)
+      );
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
+  // deletes chat messages in asyncStorage
+  async deleteMessages() {
+    try {
+      await AsyncStorage.removeItem("messages");
+      this.setState({
+        messages: [],
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   componentDidMount() {
     // required for listing name in default message
     // used to display title/name at very top of page
@@ -92,7 +129,6 @@ export default class Chat extends React.Component {
       // update user state
       this.setState({
         uid: user.uid,
-        messages: [],
         loggedInText: "You are logged in",
         user: {
           // anonymous user doesn't have _id attached to user object so the app breaks when trying to send a message
@@ -127,41 +163,10 @@ export default class Chat extends React.Component {
     });
   }
 
-  // retrieve chat messages from asyncStorage
-  async getMessages() {
-    let messages = "";
-    try {
-      messages = (await AsyncStorage.getItem("messages")) || [];
-      this.setState({
-        messages: JSON.parse(messages),
-      });
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-
-  // stores chat messages in asyncStorage
-  async saveMessages() {
-    try {
-      await AsyncStorage.setItem(
-        "messages",
-        JSON.stringify(this.state.messages)
-      );
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
-
-  // deletes chat messages in asyncStorage
-  async deleteMessages() {
-    try {
-      await AsyncStorage.removeItem("messages");
-      this.setState({
-        messages: [],
-      });
-    } catch (error) {
-      console.log(error.message);
-    }
+  componentWillUnmount() {
+    // unsubscribe() used to stop receiving updates from collection
+    this.unsubscribe();
+    this.authUnsubscribe();
   }
 
   // adds messages to state
@@ -210,10 +215,9 @@ export default class Chat extends React.Component {
     }
   }
 
-  componentWillUnmount() {
-    // unsubscribe() used to stop receiving updates from collection
-    this.unsubscribe();
-    this.authUnsubscribe();
+  renderCustomActions = (props) => {
+    return <CustomActions {...props} />;
+  };
   }
 
   render() {
@@ -229,6 +233,7 @@ export default class Chat extends React.Component {
         }}
       >
         <GiftedChat
+          renderActions={this.renderCustomActions}
           renderBubble={this.renderBubble.bind(this)}
           renderInputToolbar={this.renderInputToolbar.bind(this)}
           messages={this.state.messages}
