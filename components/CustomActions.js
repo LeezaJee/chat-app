@@ -166,3 +166,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
+CustomActions.contextTypes = {
+  actionSheet: PropTypes.func,
+};
