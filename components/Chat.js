@@ -38,6 +38,9 @@ export default class Chat extends React.Component {
         appId: "1:768165975127:web:863bfba636567f3ab1bf12",
         measurementId: "G-F1K35KGGWV",
       });
+      firebase
+        .firestore()
+        .settings({ experimentalForceLongPolling: true, merge: true });
     }
     // reference to messages collection
     this.referenceChatMessages = firebase.firestore().collection("messages");
