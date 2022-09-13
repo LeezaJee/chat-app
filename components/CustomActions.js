@@ -45,3 +45,26 @@ export default class CustomActions extends React.Component {
       console.log(error.message);
     }
   };
+
+  // gets the GPS location of the user
+  getLocation = async () => {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    try {
+      if (status === "granted") {
+        let result = await Location.getCurrentPositionAsync({});
+        // const longitude = JSON.stringify(result.coords.longitude);
+        // const latitude = JSON.stringify(result.coords.latitude);
+
+        if (result) {
+          this.props.onSend({
+            location: {
+              longitude: result.coords.longitude,
+              latitude: result.coords.latitude,
+            },
+          });
+        }
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
