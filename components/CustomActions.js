@@ -28,3 +28,20 @@ export default class CustomActions extends React.Component {
     }
   };
 
+  // allows the user to take a picture with their device's camera
+  takePhoto = async () => {
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
+    try {
+      if (status === "granted") {
+        let result = await ImagePicker.launchCameraAsync({
+          mediaTypes: "Images",
+        }).catch((error) => console.log(error));
+        if (!result.cancelled) {
+          const imageUrl = await this.uploadImageFetch(result.uri);
+          this.props.onSend({ image: imageUrl });
+        }
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
