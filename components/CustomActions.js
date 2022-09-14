@@ -117,16 +117,16 @@ class CustomActions extends React.Component {
           case 0:
             console.log("user wants to pick an image");
             this.pickImage();
-            return;
+            break;
           case 1:
             console.log("user wants to take a photo");
             this.takePhoto();
-            return;
+            break;
           case 2:
             console.log("user wants to get their location");
             this.getLocation();
           default:
-            return;
+            break;
         }
       }
     );
