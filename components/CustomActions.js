@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connectActionSheet } from "@expo/react-native-action-sheet";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
 import * as Location from "expo-location";
@@ -8,14 +9,14 @@ import firebase from "firebase";
 import firestore from "firebase";
 import { TouchableOpacity, View, StyleSheet, Text } from "react-native";
 
-export default class CustomActions extends React.Component {
+class CustomActions extends React.Component {
   // allows the user to pick an existing image from their device’s media library
   pickImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     try {
       if (status === "granted") {
         let result = await ImagePicker.launchImageLibraryAsync({
-          mediaTypes: "Images",
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
         }).catch((error) => console.log(error));
 
         if (!result.cancelled) {
@@ -34,7 +35,7 @@ export default class CustomActions extends React.Component {
     try {
       if (status === "granted") {
         let result = await ImagePicker.launchCameraAsync({
-          mediaTypes: "Images",
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
         }).catch((error) => console.log(error));
         if (!result.cancelled) {
           const imageUrl = await this.uploadImageFetch(result.uri);
@@ -106,7 +107,7 @@ export default class CustomActions extends React.Component {
       "Cancel",
     ];
     const cancelButtonIndex = options.length - 1;
-    this.context.actionSheet().showActionSheetWithOptions(
+    this.props.showActionSheetWithOptions(
       {
         options,
         cancelButtonIndex,
@@ -115,13 +116,17 @@ export default class CustomActions extends React.Component {
         switch (buttonIndex) {
           case 0:
             console.log("user wants to pick an image");
+            this.pickImage();
             return;
           case 1:
             console.log("user wants to take a photo");
+            this.takePhoto();
             return;
           case 2:
             console.log("user wants to get their location");
+            this.getLocation();
           default:
+            return;
         }
       }
     );
@@ -170,3 +175,7 @@ const styles = StyleSheet.create({
 CustomActions.contextTypes = {
   actionSheet: PropTypes.func,
 };
+
+const ConnectedApp = connectActionSheet(CustomActions);
+
+export default ConnectedApp;
