@@ -65,6 +65,8 @@ export default class Chat extends React.Component {
           name: data.user.name,
           avatar: data.user.avatar,
         },
+        image: data.image || null,
+        location: data.location || null,
       });
     });
     this.setState({
@@ -178,20 +180,24 @@ export default class Chat extends React.Component {
       () => {
         this.addMessage(messages[0]);
         this.saveMessages(messages);
+        this.deleteMessages(messages);
       }
     );
   }
 
   // adds messages to store
-  addMessage = (message) => {
+  addMessage() {
+    const message = this.state.messages[0];
     this.referenceChatMessages.add({
       uid: this.state.uid,
       _id: message._id,
       createdAt: message.createdAt,
-      text: message.text,
-      user: message.user,
+      text: message.text || "",
+      user: this.state.user,
+      image: message.image || null,
+      location: message.location || null,
     });
-  };
+  }
 
   // customize style of message bubble
   renderBubble(props) {
@@ -251,14 +257,14 @@ export default class Chat extends React.Component {
       >
         <GiftedChat
           renderActions={this.renderCustomActions}
-          renderCustomView={this.renderCustomView.bind(this)}
+          renderCustomView={this.renderCustomView}
           renderBubble={this.renderBubble.bind(this)}
           renderInputToolbar={this.renderInputToolbar.bind(this)}
           messages={this.state.messages}
           onSend={(messages) => this.onSend(messages)}
           user={{
             _id: this.state.user._id,
-            name: name,
+            name: this.state.user.avatar,
             avatar: this.state.user.avatar,
           }}
         />
