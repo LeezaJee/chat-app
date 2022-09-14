@@ -243,6 +243,27 @@ export default class Chat extends React.Component {
     return null;
   }
 
+  handleLongPress(context, message) {
+    console.log("long press function");
+    const options = ["Delete Message", "Cancel"];
+    const cancelButtonIndex = options.length - 1;
+    context.actionSheet().showActionSheetWithOptions(
+      {
+        options,
+        cancelButtonIndex,
+      },
+      (buttonIndex) => {
+        switch (buttonIndex) {
+          case 0:
+            console.log("deleting message");
+            break;
+          default:
+            break;
+        }
+      }
+    );
+  }
+
   render() {
     // sets selected background color from start page
     // name = username displayed
@@ -262,6 +283,7 @@ export default class Chat extends React.Component {
           renderInputToolbar={this.renderInputToolbar.bind(this)}
           messages={this.state.messages}
           onSend={(messages) => this.onSend(messages)}
+          onLongPress={this.handleLongPress}
           user={{
             _id: this.state.user._id,
             name: this.state.user.avatar,
