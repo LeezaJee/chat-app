@@ -1,4 +1,4 @@
-# chat-app
+# Chat App
 
 
 ![Chat-App](public/Chat-App.png)
@@ -75,7 +75,7 @@ Firebase is being used as a cloud-based storage platform for the app.
 
 <br>
 
-### Dependencies: 
+## Dependencies: 
 * React-Native
 * Expo
 * Gifted Chat
