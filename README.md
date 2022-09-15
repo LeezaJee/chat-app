@@ -1,9 +1,7 @@
 # Chat App
 
 
-![Chat-App](public/Chat-App.png)
-
-![Chat-Screen](public/Chat-Screen.png)
+<img src="public/Chat-App.png" height="579" width="270" > <img src="public/Chat-Screen.png" height="579" width="270" >
 
 <br>
 
