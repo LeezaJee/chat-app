@@ -1,13 +1,13 @@
 # chat-app
 
 
-![Backgroundimage](public/Chat-App.png)
+![Chat-App](public/Chat-App.png)
 
-![Backgroundimage](public/Chat Screen.png)
+![Chat-Screen](public/Chat-Screen.png)
 
 <br>
 
-### Description
+## Description
 
 This application is a chat room where multiple users can join and share text messages, images, and their location.
 
@@ -38,7 +38,7 @@ reader so that I can engage with a chat interface.
 
 <br>
 
-### Installation & Configuration
+## Installation & Configuration
 ### Expo
 Expo provides tools that can help get you started and speeds up the app development. It has its own SDK(software development kit) which offers features that include access to the camera, retrieving geolocations and so on. 
 
@@ -75,7 +75,7 @@ Firebase is being used as a cloud-based storage platform for the app.
 
 <br>
 
-## Dependencies: 
+### Dependencies: 
 * React-Native
 * Expo
 * Gifted Chat
