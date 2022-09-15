@@ -2,6 +2,7 @@
 
 
 <img src="public/Chat-App.png" height="579" width="270" >
+<img src="public/Chat-Screen.png" height="579" width="270" >
 
 <br>
 
