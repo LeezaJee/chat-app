@@ -75,6 +75,6 @@ Firebase is being used as a cloud-based storage platform for the app.
 
 ## Screenshots
 
-<img src="public/Chat-App.png" height="400" width="800" >
-<img src="public/Chat-Screen.png" height="400" width="800" >
+<img src="public/Chat-App.png" height="579" width="270" >
+<img src="public/Chat-Screen.png" height="579" width="270" >
 
