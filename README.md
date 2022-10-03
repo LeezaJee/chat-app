@@ -1,23 +1,16 @@
 # Chat App
 
-
-<img src="public/Chat-App.png" height="579" width="270" > <img src="public/Chat-Screen.png" height="579" width="270" > <img src="public/Chat-Screen2.png" height="579" width="270" >
-
-<br>
-
-## Description
-
-This application is a chat room where multiple users can join and share text messages, images, and their location.
+a chat room where multiple users can join and share text messages, images, and their location.
 
 <br>
 
 ## Key Features:
-* A page where users can enter their name and choose a background color for the chat screen
+* a page where users can enter their name and choose a background color for the chat screen
 before joining the chat.
-* A page displaying the conversation, as well as an input field and a button to send.
-* The chat must provide users with two additional communication features: sending images
+* a page displaying the conversation, as well as an input field and a button to send.
+* the chat must provide users with two additional communication features: sending images
 and location data.
-* Data gets stored online and offline.
+* data gets stored online and offline.
 
 <br>
 
@@ -79,3 +72,9 @@ Firebase is being used as a cloud-based storage platform for the app.
 * Gifted Chat
 * Google Firebase
 * Android Studio - Emulator
+
+## Screenshots
+
+<img src="public/chat-app.png" height="400" width="800" >
+<img src="public/chat-screen.png" height="400" width="800" >
+
