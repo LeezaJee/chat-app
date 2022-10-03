@@ -73,6 +73,8 @@ Firebase is being used as a cloud-based storage platform for the app.
 * Google Firebase
 * Android Studio - Emulator
 
+<br>
+
 ## Screenshots
 
 <img src="public/Chat-App.png" height="579" width="270" > <img src="public/Chat-Screen.png" height="579" width="270" > <img src="public/Chat-Screen2.png" height="579" width="270" >
